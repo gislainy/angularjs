@@ -1,0 +1,36 @@
+<div class="jumbotron">
+    <ui-accordions>
+        <ui-accordion title="Accordion 1">
+            É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).
+        </ui-accordion>
+        <ui-accordion title="Accordion 2">
+            É um fato conhecido de todos que um leitor se distrairá com o conteúdo de texto legível de uma página quando estiver examinando sua diagramação. A vantagem de usar Lorem Ipsum é que ele tem uma distribuição normal de letras, ao contrário de "Conteúdo aqui, conteúdo aqui", fazendo com que ele tenha uma aparência similar a de um texto legível. Muitos softwares de publicação e editores de páginas na internet agora usam Lorem Ipsum como texto-modelo padrão, e uma rápida busca por 'lorem ipsum' mostra vários websites ainda em sua fase de construção. Várias versões novas surgiram ao longo dos anos, eventualmente por acidente, e às vezes de propósito (injetando humor, e coisas do gênero).
+        </ui-accordion>
+    </ui-accordions>
+    <h3>{{app}}</h3>
+    <ui-alert title="Ops, aconteceu um problema!">
+        {{error}}
+    </ui-alert>
+    <input type="text"ng-model="criterioDeBusca" placeholder="O que você está buscando?" class="form-control"/>
+    <table ng-show="contatos.length > 0" class="table">
+        <tr>
+            <th></th>
+            <th>Serial</th>
+            <th> <a ng-click="ordenarPor('nome')">Nome</a></th>
+            <th> <a ng-click="ordenarPor('telefone')">Telefone</a></th>
+            <th><a ng-click="ordenarPor('operadora')">Operadora</a></th>
+            <th><a ng-click="ordenarPor('data')">Data</a></th>
+            <th></th>
+        </tr>
+        <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos | filter:criterioDeBusca | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
+            <td><input type="checkbox" ng-model="contato.selecionado"/></td>
+            <td>{{contato.serial}}</td>
+            <td>{{contato.nome | name | ellipsis:10}}</td>
+            <td>{{contato.telefone}}</td>
+            <td>{{contato.operadora.nome}}</td>
+            <td>{{contato.data | date:'dd/MM/yyyy'}}</td>
+            <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
+        </tr>
+    </table>
+    <a class="btn btn-primary btn-block" href="#/novoContato">Novo contato</a>
+    </div>
